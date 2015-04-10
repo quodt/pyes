@@ -46,7 +46,7 @@ class Indices(object):
         Change the aliases stored.
         (See :ref:`es-guide-reference-api-admin-indices-aliases`)
 
-        :param commands: is a list of 3-tuples; (command, index, alias), where
+        :param commands: is a list of 4-tuples; (command, index, alias), where
                          `command` is one of "add" or "remove", and `index` and
                          `alias` are the index and alias to add or remove.
 
@@ -602,7 +602,7 @@ class Cluster(object):
         The cluster :ref:`nodes info <es-guide-reference-api-admin-cluster-state>` API allows to retrieve one or more (or all) of
         the cluster nodes information.
         """
-        parts = ["_cluster", "nodes"]
+        parts = ["_nodes"]
         if nodes:
             parts.append(",".join(nodes))
         path = make_path(*parts)
