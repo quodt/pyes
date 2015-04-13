@@ -1158,7 +1158,11 @@ class ES(object):
 
         if query is None:
             query = MatchAllQuery()
-        body = {"query": query.serialize()}
+        if hasattr(query, 'serialize'):
+            q = query.serialize()
+        else:
+            q = query
+        body = {"query": q}
         path = self._make_path(indices, doc_types, "_count")
         return self._send_request('GET', path, body, params=query_params)
 
